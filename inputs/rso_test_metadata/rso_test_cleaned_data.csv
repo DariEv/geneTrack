@@ -1,0 +1,9 @@
+accession, strain, collection_date, country, host, organism,phy_id
+GCF_001586135.1_ASM158613v1_protein, KACC 10722,1998, South Korea, Solanum tuberosum, R.solanacearum,ASM158613v
+GCF_001587135.1_ASM158713v1_protein, UW163,1967, Peru, Plantain, R.solanacearum,ASM158713v
+GCF_001887535.1_ASM188753v1_protein, FJAT-1458,2008, China, Tomato, R.solanacearum,ASM188753v
+GCF_013306235.1_ASM1330623v1_protein, FJAT445.F50,2019, China, Tomato, R.solanacearum,ASM1330623
+GCF_013306335.1_ASM1330633v1_protein, FJAT15353.F50,2019, China, Tomato, R.solanacearum,ASM1330633
+GCF_013306435.1_ASM1330643v1_protein, FJAT15304.F6,2019, China, Tomato, R.solanacearum,ASM1330643
+GCF_013306935.1_ASM1330693v1_protein, FJAT1303.F50,2019, China, Tomato, R.solanacearum,ASM1330693
+GCF_013375735.1_ASM1337573v1_protein, FJAT91-F8,2019, China, unknown, R.solanacearum,ASM1337573

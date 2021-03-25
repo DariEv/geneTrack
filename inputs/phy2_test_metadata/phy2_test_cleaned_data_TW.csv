@@ -1,0 +1,91 @@
+﻿phy_id,accession,strain,collection_date,country,host,organism
+ASM912v1_g,GCF_000009125.1_ASM912v1_genomic,GMI1000,unknown,unknown,unknown,R.solanacearum
+ASM21532v1,GCF_000215325.1_ASM21532v1_genomic,Po82,unknown,unknown,unknown,R.solanacearum
+ASM28347v1,GCF_000283475.1_ASM28347v1_genomic,PSI07,unknown,unknown,unknown,R.solanacearum
+ASM129955v,GCF_001299555.1_ASM129955v1_genomic,UY031,2014,Uruguay,Solanum commersonii,R.solanacearum
+ASM158613v,GCF_001586135.1_ASM158613v1_genomic,KACC 10722,1998,South Korea,Solanum tuberosum,R.solanacearum
+ASM158713v,GCF_001587135.1_ASM158713v1_genomic,UW163,1967,Peru,Plantain,R.solanacearum
+ASM158715v,GCF_001587155.1_ASM158715v1_genomic,IBSBF1503,1999,Brazil,Cucumis sativus,R.solanacearum
+ASM166341v,GCF_001663415.1_ASM166341v1_genomic,YC40-M,unknown,China,Rhizoma kaempferiae,R.solanacearum
+ASM170852v,GCF_001708525.1_ASM170852v1_genomic,KACC 10709,unknown,Korea,unknown,R.solanacearum
+ASM187956v,GCF_001879565.1_ASM187956v1_genomic,OE1-1,unknown,Japan,Solanum melongena,R.solanacearum
+ASM188753v,GCF_001887535.1_ASM188753v1_genomic,FJAT-1458,2008,China,Tomato,R.solanacearum
+ASM189110v,GCF_001891105.1_ASM189110v1_genomic,EP1,2014,China,Eggplant,R.solanacearum
+ASM215524v,GCF_002155245.1_ASM215524v1_genomic,FJAT-91,2009,China,unknown,R.solanacearum
+ASM216201v,GCF_002162015.1_ASM216201v1_genomic,SEPPX05,2014,China,Sesame seedling,R.solanacearum
+ASM222046v,GCF_002220465.1_ASM222046v1_genomic,CQPS-1,2013,China,Tobacco,R.solanacearum
+ASM250156v,GCF_002501565.1_ASM250156v1_genomic,RS 488,2012,Brazil,Solanum lycopersicum,R.solanacearum
+ASM254981v,GCF_002549815.1_ASM254981v1_genomic,RS 489,2012,Brazil,Solanum lycopersicum,R.solanacearum
+ASM289428v,GCF_002894285.1_ASM289428v1_genomic,RSCM,2016,China,Cucurbita maxima,R.solanacearum
+ASM351514v,GCF_003515145.1_ASM351514v1_genomic,T51,2003,South Korea,Solanum tuberosum,R.solanacearum
+ASM351516v,GCF_003515165.1_ASM351516v1_genomic,T11,1999,South Korea,Solanum tuberosum,R.solanacearum
+ASM351518v,GCF_003515185.1_ASM351518v1_genomic,SL3175,1999,South Korea,Solanum tuberosum,R.solanacearum
+ASM351520v,GCF_003515205.1_ASM351520v1_genomic,SL3103,1999,South Korea,Solanum tuberosum,R.solanacearum
+ASM351522v,GCF_003515225.1_ASM351522v1_genomic,SL2330,1999,South Korea,Solanum tuberosum,R.solanacearum
+ASM351524v,GCF_003515245.1_ASM351524v1_genomic,T117,2001,South Korea,Solanum tuberosum,R.solanacearum
+ASM351526v,GCF_003515265.1_ASM351526v1_genomic,T98,2003,South Korea,Solanum tuberosum,R.solanacearum
+ASM351528v,GCF_003515285.1_ASM351528v1_genomic,T78,2001,South Korea,Solanum tuberosum,R.solanacearum
+ASM351532v,GCF_003515325.1_ASM351532v1_genomic,T12,2003,South Korea,Solanum tuberosum,R.solanacearum
+ASM351534v,GCF_003515345.1_ASM351534v1_genomic,SL3755,2000,South Korea,Solanum tuberosum,R.solanacearum
+ASM351536v,GCF_003515365.1_ASM351536v1_genomic,SL3730,2000,South Korea,Solanum tuberosum,R.solanacearum
+ASM351538v,GCF_003515385.1_ASM351538v1_genomic,SL3022,1999,South Korea,Solanum tuberosum,R.solanacearum
+ASM351540v,GCF_003515405.1_ASM351540v1_genomic,SL2729,1999,South Korea,Solanum tuberosum,R.solanacearum
+ASM351542v,GCF_003515425.1_ASM351542v1_genomic,SL2312,1998,South Korea,Solanum tuberosum,R.solanacearum
+ASM351544v,GCF_003515445.1_ASM351544v1_genomic,SL2064,1998,South Korea,Solanum tuberosum,R.solanacearum
+ASM351548v,GCF_003515485.1_ASM351548v1_genomic,T101,2003,South Korea,Solanum tuberosum,R.solanacearum
+ASM351550v,GCF_003515505.1_ASM351550v1_genomic,T95,2003,South Korea,Solanum tuberosum,R.solanacearum
+ASM351552v,GCF_003515525.1_ASM351552v1_genomic,T82,2003,South Korea,Solanum tuberosum,R.solanacearum
+ASM351554v,GCF_003515545.1_ASM351554v1_genomic,T60,2003,South Korea,Solanum tuberosum,R.solanacearum
+ASM351556v,GCF_003515565.1_ASM351556v1_genomic,T42,2003,South Korea,Solanum tuberosum,R.solanacearum
+ASM351558v,GCF_003515585.1_ASM351558v1_genomic,SL3882,2001,South Korea,Solanum tuberosum,R.solanacearum
+ASM351560v,GCF_003515605.1_ASM351560v1_genomic,SL3822,2000,South Korea,Solanum tuberosum,R.solanacearum
+ASM351562v,GCF_003515625.1_ASM351562v1_genomic,SL3300,2000,South Korea,Solanum tuberosum,R.solanacearum
+ASM359060v,GCF_003590605.1_ASM359060v1_genomic,IBSBF 2571,2010,Brazil,Musa sp.,R.solanacearum
+ASM399971v,GCF_003999715.1_ASM399971v1_genomic,HA4-1,2010,China,Peanut,R.solanacearum
+ASM608875v,GCF_006088755.1_ASM608875v1_genomic,UW386,1979,Nigeria,unknown,R.solanacearum
+ASM1129040,GCF_011290405.1_ASM1129040v1_genomic,B2,2012,China,unknown,R.solanacearum
+ASM1129042,GCF_011290425.1_ASM1129042v1_genomic,204,2012,China,unknown,R.solanacearum
+ASM1129044,GCF_011290445.1_ASM1129044v1_genomic,203,2012,China,unknown,R.solanacearum
+ASM1129046,GCF_011290465.1_ASM1129046v1_genomic,202,2012,China,unknown,R.solanacearum
+ASM1256246,GCF_012562465.1_ASM1256246v1_genomic,CIAT_078,2004,Colombia,Plantain,R.solanacearum
+ASM1330601,GCF_013306015.1_ASM1330601v1_genomic,FJAT91.F50,2019,China,Tomato,R.solanacearum
+ASM1330609,GCF_013306095.1_ASM1330609v1_genomic,FJAT454.F1,2019,China,Tomato,R.solanacearum
+ASM1330615,GCF_013306155.1_ASM1330615v1_genomic,FJAT448.F50,2019,China,Tomato,R.solanacearum
+ASM1330620,GCF_013306205.1_ASM1330620v1_genomic,FJAT448.F1,2019,China,Tomato,R.solanacearum
+ASM1330623,GCF_013306235.1_ASM1330623v1_genomic,FJAT445.F50,2019,China,Tomato,R.solanacearum
+ASM1330625,GCF_013306255.1_ASM1330625v1_genomic,FJAT445.F1,2019,China,Tomato,R.solanacearum
+ASM1330627,GCF_013306275.1_ASM1330627v1_genomic,FJAT442.F50,2019,China,Tomato,R.solanacearum
+ASM1330629,GCF_013306295.1_ASM1330629v1_genomic,FJAT442.F1,2019,China,Tomato,R.solanacearum
+ASM1330631,GCF_013306315.1_ASM1330631v1_genomic,FJAT15353.F8,2019,China,Tomato,R.solanacearum
+ASM1330633,GCF_013306335.1_ASM1330633v1_genomic,FJAT15353.F50,2019,China,Tomato,R.solanacearum
+ASM1330635,GCF_013306355.1_ASM1330635v1_genomic,FJAT15353.F1,2019,China,Tomato,R.solanacearum
+ASM1330637,GCF_013306375.1_ASM1330637v1_genomic,FJAT15340.F50,2019,China,Tomato,R.solanacearum
+ASM1330639,GCF_013306395.1_ASM1330639v1_genomic,FJAT15340.F6,2019,China,Tomato,R.solanacearum
+ASM1330641,GCF_013306415.1_ASM1330641v1_genomic,FJAT15340.F1,2019,China,Tomato,R.solanacearum
+ASM1330643,GCF_013306435.1_ASM1330643v1_genomic,FJAT15304.F6,2019,China,Tomato,R.solanacearum
+ASM1330645,GCF_013306455.1_ASM1330645v1_genomic,FJAT15304.F1,2019,China,Tomato,R.solanacearum
+ASM1330647,GCF_013306475.1_ASM1330647v1_genomic,FJAT15304.F50,2019,China,Tomato,R.solanacearum
+ASM1330649,GCF_013306495.1_ASM1330649v1_genomic,FJAT15252.F50,2019,China,Tomato,R.solanacearum
+ASM1330651,GCF_013306515.1_ASM1330651v1_genomic,FJAT15252.F1,2019,China,Tomato,R.solanacearum
+ASM1330654,GCF_013306545.1_ASM1330654v1_genomic,FJAT15249.F50,2019,China,Tomato,R.solanacearum
+ASM1330657,GCF_013306575.1_ASM1330657v1_genomic,FJAT15249.F1,2019,China,Tomato,R.solanacearum
+ASM1330665,GCF_013306655.1_ASM1330665v1_genomic,FJAT15244.F50,2019,China,Tomato,R.solanacearum
+ASM1330674,GCF_013306745.1_ASM1330674v1_genomic,FJAT15244.F1,2019,China,Tomato,R.solanacearum
+ASM1330676,GCF_013306765.1_ASM1330676v1_genomic,FJAT1463.F50,2019,China,Tomato,R.solanacearum
+ASM1330678,GCF_013306785.1_ASM1330678v1_genomic,FJAT1458.F50,2019,China,Tomato,R.solanacearum
+ASM1330680,GCF_013306805.1_ASM1330680v1_genomic,FJAT1463.F1,2019,China,Tomato,R.solanacearum
+ASM1330682,GCF_013306825.1_ASM1330682v1_genomic,FJAT1458.F1,2019,China,Tomato,R.solanacearum
+ASM1330684,GCF_013306845.1_ASM1330684v1_genomic,FJAT1452.F50,2019,China,Tomato,R.solanacearum
+ASM1330687,GCF_013306875.1_ASM1330687v1_genomic,FJAT1452.F1,2019,China,Tomato,R.solanacearum
+ASM1330691,GCF_013306915.1_ASM1330691v1_genomic,FJAT1303.F8,2019,China,Tomato,R.solanacearum
+ASM1330693,GCF_013306935.1_ASM1330693v1_genomic,FJAT1303.F50,2019,China,Tomato,R.solanacearum
+ASM1330695,GCF_013306955.1_ASM1330695v1_genomic,FJAT1303.F1,2019,China,Tomato,R.solanacearum
+ASM1337571,GCF_013375715.1_ASM1337571v1_genomic,FJAT91-F1,2019,China,unknown,R.solanacearum
+ASM1337573,GCF_013375735.1_ASM1337573v1_genomic,FJAT91-F8,2019,China,unknown,R.solanacearum
+ASM1370476,GCF_013704765.1_ASM1370476v1_genomic,FJAT15244-F8,2019,China,unknown,R.solanacearum
+ASM1404197,GCF_014041975.1_ASM1404197v1_genomic,YQ,2014,China,Casuarina equisetifolia,R.solanacearum
+ASM1449080,GCF_014490805.1_ASM1449080v1_genomic,FJAT454.F50-1,2019,China,Tomato,R.solanacearum
+ASM1488468,GCF_014884685.1_ASM1488468v1_genomic,UW774,2013,Madagascar,unknown,R.solanacearum
+ASM1488470,GCF_014884705.1_ASM1488470v1_genomic,UW773,2013,Madagascar,unknown,R.solanacearum
+ASM1488472,GCF_014884725.1_ASM1488472v1_genomic,UW763,2017,Senegal,unknown,R.solanacearum
+ASM1488474,GCF_014884745.1_ASM1488474v1_genomic,UW576,2004,USA,unknown,R.solanacearum
