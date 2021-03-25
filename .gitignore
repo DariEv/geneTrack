@@ -1,0 +1,15 @@
+# Outputs #
+###########
+*.pkl
+test.sh
+*_outputs/*
+
+# Databases #
+#############
+*.log
+*.pkl
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
