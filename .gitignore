@@ -1,8 +1,9 @@
 # Outputs #
 ###########
-*.pkl
 test.sh
+scripts/.ipynb_checkpoints*
 *_outputs/*
+
 
 # Databases #
 #############
@@ -11,5 +12,5 @@ test.sh
 
 # OS generated files #
 ######################
-.DS_Store
-.DS_Store?
+*.DS_Store
+*.DS_Store?
