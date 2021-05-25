@@ -1,8 +1,9 @@
 report: "report/workflow.rst"
-workdir: "{sample}_outputs"
 
 rule all:
-	input: ["rso_test_HGT_candidates_summary.pdf"]
+	input: ["phy4_test_HGT_candidates_summary.pdf"]
+
+workdir: "phy4_outputs"
 
 # todo
 # 0. add R to PATH
@@ -271,11 +272,11 @@ rule remove_recombinations_from_MSA:
 	output:
 		fa_msa_out="{sample}_concat_no_RR.fasta",
 		ph_msa_out="{sample}_concat_no_RR.phylip",
-		updated_recombis="{sample}_recombis2prot.csv"
+		updated_recombis="{sample}_recombis2prot.csv",
+		mult_recombis="{sample}_recombis_mult_genes.txt",
+		top_recombis="{sample}_recombis_top_genes.txt",
 	conda:
 		"env/biopython_env.yml"
-	#shell:
-	#	"cp {input.msa} {output}"
 	notebook:
 		"scripts/remove_recombinations_from_MSA.ipynb"
 
@@ -291,9 +292,11 @@ rule Modeltest_NG_II:
 		"modeltest-ng  -i {input.msa};"
 		"mv {input.msa}.* {output.dir}"
 
+# TODO modeltest results as an input
 rule PhyML_II:
 	input:
-		msa="{sample}_concat_no_RR.phylip"
+		msa="{sample}_concat_no_RR.phylip",
+		model=rules.Modeltest_NG_II.output.dir
 		# TODO model=rules.Modeltest_NG.output.dir
 		#modet_test_log="{sample}_modeltest_1/{sample}_concat.fasta.log"
 	output:
