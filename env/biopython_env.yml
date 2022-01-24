@@ -3,8 +3,8 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - biopython=1.78
-  - pandas=1.2.2
+  - biopython=1.79
+  - pandas=1.2.4
   - jupyter=1.0.0
   - jupyter_contrib_nbextensions=0.5.1
-  - treetime=0.8.1
+  - treetime=0.8.5

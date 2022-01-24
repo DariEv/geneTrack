@@ -1,7 +1,0 @@
-channels:
-  - bioconda
-  - conda-forge
-  - defaults
-dependencies:
-  - phyml=3.3.20190909
-  - modeltest-ng=0.1.6
