@@ -3,7 +3,7 @@
 test.sh
 scripts/.ipynb_checkpoints*
 *_outputs/*
-
+report/*
 
 # Databases #
 #############
@@ -14,3 +14,7 @@ scripts/.ipynb_checkpoints*
 ######################
 *.DS_Store
 *.DS_Store?
+
+# pyCharm #
+###########
+.idea*
