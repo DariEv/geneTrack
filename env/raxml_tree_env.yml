@@ -5,3 +5,5 @@ channels:
 dependencies:
   - modeltest-ng=0.1.6
   - raxml-ng=1.1
+  - jupyter=1.0.0
+  - jupyter_contrib_nbextensions=0.5.1

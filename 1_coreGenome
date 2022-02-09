@@ -1,9 +1,9 @@
 report: "report/workflow.rst"
 
 rule all:
-	input: ["korea2_HGT_candidates_summary.pdf"]
+	input: ["phy4_test_HGT_candidates_summary.pdf"]
 
-workdir: "korea2_outputs"
+workdir: "phy4_test_outputs"
 
 # todo
 # 0. add R to PATH
@@ -127,22 +127,36 @@ rule OGs_to_MSA:
 #		"modeltest-ng  -i {input.msa};"
 #		"mv {input.msa}.* {output.dir}"
 
-rule PhyML:
+#rule PhyML:
+#	input:
+#		msa="{sample}_concat.nexus",
+		# TODO model=rules.Modeltest_NG.output.dir
+		#modet_test_log="{sample}_modeltest_1/{sample}_concat.fasta.log"
+		#tmp="/Users/devseeva/Desktop/work/sm_workflow/snakefiles/scripts/core_OG_nucl_MSA.phylip_phyml_tree.txt"
+#	output:
+#		"{sample}_ML_tree_with_RR.nwk"
+#	conda:
+#		"env/phyml_tree_env.yml"
+#	shell:
+		##"phyml_command=$(grep -m1 \"> phyml\" {input.modet_test_log}) ; "
+		##"phyml_command=${phyml_command#>} ; "
+		##"$phyml_command"
+#		"phyml  -i {input.msa} -m 012345 -f m -v 0 -a e -c 4 -o tlr; "
+#		"mv {input.msa}_phyml_tree.txt {output}"
+
+rule RAxML:
 	input:
-		msa="{sample}_concat.nexus",
+		msa="{sample}_concat.fasta",
 		# TODO model=rules.Modeltest_NG.output.dir
 		#modet_test_log="{sample}_modeltest_1/{sample}_concat.fasta.log"
 		#tmp="/Users/devseeva/Desktop/work/sm_workflow/snakefiles/scripts/core_OG_nucl_MSA.phylip_phyml_tree.txt"
 	output:
 		"{sample}_ML_tree_with_RR.nwk"
 	conda:
-		"env/phyml_tree_env.yml"
+		"env/raxml_tree_env.yml"
 	shell:
-		##"phyml_command=$(grep -m1 \"> phyml\" {input.modet_test_log}) ; "
-		##"phyml_command=${phyml_command#>} ; "
-		##"$phyml_command"
-		"phyml  -i {input.msa} -m 012345 -f m -v 0 -a e -c 4 -o tlr; "
-		"mv {input.msa}_phyml_tree.txt {output}"
+		"raxml-ng --msa {input.msa} --model GTR+I+G4; "
+		"mv {input.msa}.raxml.bestTree {output}"
 
 # TODO: tree from OF is different for MSA and not MSA methods!
 # TODO: model test on MSA, RAxML_or_PhyML, -> tree for CFML
@@ -214,38 +228,46 @@ rule Modeltest_NG_II:
 	input:
 		msa="{sample}_concat_no_RR.fasta"
 	output:
-		dir=directory("{sample}_modeltest_2")
+		dir=directory("{sample}_modeltest_2"),
+		log="{sample}_modeltest_2/{sample}_concat_no_RR.fasta.out"
 	conda:
 		"env/phyml_tree_env.yml"
 	shell:
+		"rmdir {output.dir};"
 		"mkdir {output.dir};"
 		"modeltest-ng  -i {input.msa};"
 		"mv {input.msa}.* {output.dir}"
 
 # TODO modeltest results as an input
-rule PhyML_II:
-	input:
-		msa="{sample}_concat_no_RR.nexus",
-		model=rules.Modeltest_NG_II.output.dir
+#rule PhyML_II:
+#	input:
+#		msa="{sample}_concat_no_RR.nexus",
+#		model=rules.Modeltest_NG_II.output.dir
 		# TODO model=rules.Modeltest_NG.output.dir
 		#modet_test_log="{sample}_modeltest_1/{sample}_concat.fasta.log"
-	output:
-		"{sample}_ML_tree.nwk"
-	conda:
-		"env/phyml_tree_env.yml"
-	shell:
+#	output:
+#		"{sample}_ML_tree.nwk"
+#	conda:
+#		"env/phyml_tree_env.yml"
+#	shell:
 		##"phyml_command=$(grep -m1 \"> phyml\" {input.modet_test_log}) ; "
 		##"phyml_command=${phyml_command#>} ; "
 		##"$phyml_command"
-		"phyml  -i {input.msa} -m 012345 -f m -v 0 -a e -c 4 -o tlr; "
-		"mv {input.msa}_phyml_tree.txt {output}"
+#		"phyml  -i {input.msa} -m 012345 -f m -v 0 -a e -c 4 -o tlr; "
+#		"mv {input.msa}_phyml_tree.txt {output}"
 
-# TODO replace mafft with og-core msa!
-# TODO optimize branch length:
-#	TreeAnc.optimize_branch_lengths_joint: THIS TREE HAS LONG BRANCHES.
-#      	****TreeTime's JOINT IS NOT DESIGNED TO OPTIMIZE LONG BRANCHES.
-#      	****PLEASE OPTIMIZE BRANCHES USING:
-#      	****branch_length_mode='input' or 'marginal'
+rule RAxML_II:
+	input:
+		msa="{sample}_concat_no_RR.fasta",
+		modeltest="{sample}_modeltest_2/{sample}_concat_no_RR.fasta.out"
+	params:
+		algo="raxml"
+	output:
+		"{sample}_ML_tree.nwk"
+	conda:
+		"env/raxml_tree_env.yml"
+	notebook:
+		"scripts/parse_ML_model.ipynb"
 
 # treetime --aln core_OG_nucl_MSA.fasta --tree SpeciesTree_rooted_node_labels.txt --dates metainfo.csv --date-column collection_date --plot-tree test_rso_treeTime.pdf --outdir OUTDIR
 ### !!! TreeTime.reroot: rerooting will ignore covariance and shared ancestry. !!!
