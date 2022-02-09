@@ -1,0 +1,5 @@
+working_dir: '/Users/devseeva/Desktop/work/sm_workflow/geneTrack/WORKING/'
+
+sample: 'rso_test'
+input_gbs: '/Users/devseeva/Desktop/work/sm_workflow/geneTrack/inputs/panX/rso_test'
+orthoFinder: '/Users/devseeva/Desktop/work/rso/OrthoFinder/orthoF_msa_rso_test'

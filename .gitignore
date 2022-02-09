@@ -4,6 +4,9 @@ test.sh
 scripts/.ipynb_checkpoints*
 *_outputs/*
 report/*
+WORKING/*
+
+inputs/*
 
 # Databases #
 #############

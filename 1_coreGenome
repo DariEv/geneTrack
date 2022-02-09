@@ -1,9 +1,11 @@
 report: "report/workflow.rst"
+configfile: "config.yaml"
 
 rule all:
-	input: ["rso_test_HGT_candidates_summary.pdf"]
+	input: #["rso_test_HGT_candidates_summary.pdf"]
+		expand("{sample}_HGT_candidates_summary.pdf", sample=config["sample"], wd=config["working_dir"], of=config["orthoFinder"])
 
-workdir: "rso_test_outputs"
+workdir: config["working_dir"]
 
 # todo
 # 0. add R to PATH
@@ -32,23 +34,13 @@ workdir: "rso_test_outputs"
 # Part 1: load the genome data from genBank files into a database
 rule parse_GBs:
 	input:
-		"../inputs/panX/{sample}"
-		#"../inputs/{sample}_directory_with_proteins"
+		config["input_gbs"]
 	output:
 		protGB="GENOME_PROTEIN_DB_{sample}.pkl"
 	conda:
-		"env/biopython_env.yml"
+		"env/core_g_env.yml"
 	notebook:
 		"scripts/gb2pkl.ipynb"
-
-rule OrthoFinderAll:
-# Initial Orthofinder run with all assemblies and all reference NCBI assemblies
-	input:
-		protGB="GENOME_PROTEIN_DB_{sample}.pkl"
-	output:
-		dir=directory("{sample}_OrthoFinderAll_output_directory")
-	shell:
-		"mkdir {output}"
 
 # Can generate initial tree using OrthoFinderAll single copy orthologs and/or refer to PanX run
 # Identify individual phylotype membership for each strain (add to metadata?)
@@ -83,25 +75,12 @@ rule OrthoFinderAll:
 #	shell:
 #		"touch {output}"
 
-# Part 3: clonalFrameML
-# recombination prediction from tree and MSA (for now using PanX results)
-
-# the rule will be potentially replaced by the OrthoFinder results
-### temporal_panX_names_correction
-#rule panX:
-#	input:
-#		"../inputs/panX/{sample}/SNP_whole_matrix.aln"
-#	output:
-#		"../inputs/panX/{sample}/SNP_whole_matrix_names_corrected.aln"
-#	shell:
-#		"sed 's/ <unknown description>//g' {input} > {output}"
-
 rule OGs_to_MSA:
 	input:
 		#tree_in=rules.OrthoFinderPhylotype.output.dir,
-		core_ogs="/Users/devseeva/Desktop/work/rso/OrthoFinder/orthoF_msa_{sample}/Species_Tree/Orthogroups_for_concatenated_alignment.txt",
-		ogs2prot="/Users/devseeva/Desktop/work/rso/OrthoFinder/orthoF_msa_{sample}/Orthogroups/Orthogroups.tsv",
-		path2aln="/Users/devseeva/Desktop/work/rso/OrthoFinder/orthoF_msa_{sample}/MultipleSequenceAlignments/",
+		core_ogs=config["orthoFinder"]+"/Species_Tree/Orthogroups_for_concatenated_alignment.txt",
+		ogs2prot=config["orthoFinder"]+"/Orthogroups/Orthogroups.tsv",
+		path2aln=config["orthoFinder"]+"/MultipleSequenceAlignments/",
 		prot_db="GENOME_PROTEIN_DB_{sample}.pkl"
 	output:
 		msa_fasta="{sample}_concat.fasta",
@@ -111,7 +90,7 @@ rule OGs_to_MSA:
 	params:
 		path2OF="/Users/devseeva/Desktop/work/rso/OrthoFinder/"
 	conda:
-		"env/biopython_env.yml"
+		"env/core_g_env.yml"
 	notebook:
 		"scripts/ogs2msa.ipynb"
 
@@ -153,17 +132,16 @@ rule RAxML:
 	output:
 		"{sample}_ML_tree_with_RR.nwk"
 	conda:
-		"env/raxml_tree_env.yml"
+		"env/core_g_env.yml"
 	shell:
 		"raxml-ng --msa {input.msa} --model GTR+I+G4; "
-		"mv {input.msa}.raxml.bestTree {output}"
+		"cp {input.msa}.raxml.bestTree {output}"
 
 # TODO: tree from OF is different for MSA and not MSA methods!
 # TODO: model test on MSA, RAxML_or_PhyML, -> tree for CFML
 # + one tree after removing recombination
 # originally used panX SNPs tree (../inputs/panX...)
 
-# TODO recombination length = msa length!!!
 # tried kappa = 0.46, 0.93 from Modeltest_NG substituion rates
 # (ag+ct)/(ac+at+cg+gt)
 
@@ -180,7 +158,7 @@ rule clonalFrameML:
 	output:
 		dir=directory("{sample}_cfml")
 	conda:
-		"env/cfml_env.yml"
+		"env/core_g_env.yml"
 	shell:
 		"mkdir {output};"
 		#"cp DEBUG/rso_test_cfml/* {output}"
@@ -194,14 +172,18 @@ rule cfmlResultR_plot:
 		dir=rules.clonalFrameML.output.dir
 	params:
 		files_prefix="{sample}_cfml",
-		path2R="/Library/Frameworks/R.framework/Versions/4.0/Resources/Rscript"
+		#path2R="/Library/Frameworks/R.framework/Versions/4.0/Resources/Rscript"
 	output:
 		report("{sample}.cfml.pdf",
 		caption="report/cfml.rst", category="CFML: recombination prediction")
-	shell:
+	conda:
+		"env/r_env.yml"
+	script:
+		"scripts/cfml_results.R"
+	#shell:
 		#"cp DEBUG/rso_test.cfml.pdf {output}"
-		"{params.path2R} ../scripts/cfml_results.R {input.dir}/{params.files_prefix};"
-		"mv {input.dir}/{params.files_prefix}*.pdf {output}"
+		#"{params.path2R} ../scripts/cfml_results.R {input.dir}/{params.files_prefix};"
+		#"mv {input.dir}/{params.files_prefix}*.pdf {output}"
 
 rule remove_recombinations_from_MSA:
 	input:
@@ -220,7 +202,7 @@ rule remove_recombinations_from_MSA:
 		mult_recombis="{sample}_recombis_mult_genes.txt",
 		top_recombis="{sample}_recombis_top_genes.txt",
 	conda:
-		"env/biopython_env.yml"
+		"env/core_g_env.yml"
 	notebook:
 		"scripts/remove_recombinations_from_MSA.ipynb"
 
@@ -231,11 +213,11 @@ rule Modeltest_NG_II:
 		dir=directory("{sample}_modeltest_2"),
 		log="{sample}_modeltest_2/{sample}_concat_no_RR.fasta.out"
 	conda:
-		"env/phyml_tree_env.yml"
+		"env/core_g_env.yml"
 	shell:
 		"rmdir {output.dir};"
 		"mkdir {output.dir};"
-		"modeltest-ng  -i {input.msa};"
+		"modeltest-ng  -i {input.msa} -t ml --template raxml;"
 		"mv {input.msa}.* {output.dir}"
 
 # TODO modeltest results as an input
@@ -265,7 +247,7 @@ rule RAxML_II:
 	output:
 		"{sample}_ML_tree.nwk"
 	conda:
-		"env/raxml_tree_env.yml"
+		"env/core_g_env.yml"
 	notebook:
 		"scripts/parse_ML_model.ipynb"
 
@@ -285,7 +267,7 @@ rule treeTime:
 		plot=report("{sample}_treetime/{sample}_treetime.pdf",
 		caption="report/treeTime.rst", category="Population structure")
 	conda:
-		"env/biopython_env.yml"
+		"env/core_g_env.yml"
 	shell:
 		#"mkdir {output.dir}; touch {output.plot}"
 		"treetime --aln {input.msa} --tree {input.tree} --dates {input.dates} --date-column collection_date --name-column strain --plot-tree {params.plot_name} --outdir {output.dir}"

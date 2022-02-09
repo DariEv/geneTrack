@@ -1,0 +1,13 @@
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - biopython=1.79
+  - pandas=1.2.4
+  - jupyter=1.0.0
+  - jupyter_contrib_nbextensions=0.5.1
+  - clonalframeml=1.12
+  - modeltest-ng=0.1.6
+  - raxml-ng=1.1
+  - treetime=0.8.5
