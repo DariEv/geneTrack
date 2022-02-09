@@ -1,9 +1,9 @@
 report: "report/workflow.rst"
 
 rule all:
-	input: ["phy4_test_HGT_candidates_summary.pdf"]
+	input: ["rso_test_HGT_candidates_summary.pdf"]
 
-workdir: "phy4_test_outputs"
+workdir: "rso_test_outputs"
 
 # todo
 # 0. add R to PATH
