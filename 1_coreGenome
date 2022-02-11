@@ -329,5 +329,5 @@ rule final:
 		threads=1
 	shell:
 		#"mkdir {params.out_dir}/{params.sample}_gt_outputs; "
-		"mv *{params.sample}* {params.out_dir}; "
-		"touch {output} "
+		"mv *{params.sample}* {params.out_dir}; ls;"
+		"touch {output}; ls "
