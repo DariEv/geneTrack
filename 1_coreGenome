@@ -40,7 +40,8 @@ rule parse_GBs:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=1
+		threads=1,
+		mem_mb=1000
 	notebook:
 		"scripts/gb2pkl.ipynb"
 
@@ -94,7 +95,8 @@ rule OGs_to_MSA:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=1
+		threads=1,
+		mem_mb=1000
 	notebook:
 		"scripts/ogs2msa.ipynb"
 
@@ -138,7 +140,8 @@ rule RAxML:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=8
+		threads=8,
+		mem_mb=3000
 	shell:
 		"raxml-ng --msa {input.msa} --model GTR+I+G4 --threads {threads}; "
 		"cp {input.msa}.raxml.bestTree {output}"
@@ -188,7 +191,8 @@ rule cfmlResultR_plot:
 	conda:
 		"env/r_env.yml"
 	resources:
-		threads=1
+		threads=1,
+		mem_mb=1000
 	script:
 		"scripts/cfml_results.R"
 	#shell:
@@ -215,7 +219,8 @@ rule remove_recombinations_from_MSA:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=1
+		threads=1,
+		mem_mb=1000
 	notebook:
 		"scripts/remove_recombinations_from_MSA.ipynb"
 
@@ -229,7 +234,7 @@ rule Modeltest_NG_II:
 		"env/core_g_env.yml"
 	resources:
 		threads=8,
-		mem_mb=1000
+		mem_mb=4000
 	shell:
 		"rmdir {output.dir};"
 		"mkdir {output.dir};"
@@ -265,7 +270,8 @@ rule RAxML_II:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=8
+		threads=8,
+		mem_mb=1000
 	notebook:
 		"scripts/parse_ML_model.ipynb"
 
@@ -305,7 +311,8 @@ rule treeWAS:
 	params:
 		prefix="{sample}_cfml/{sample}_cfml"
 	resources:
-		threads=1
+		threads=1,
+		mem_mb=1000
 	output:
 		report("{sample}_treeWAS_plots.pdf",caption="report/treeWAS.rst",category="CFML: recombination prediction")
 	script:
@@ -329,7 +336,8 @@ rule final:
 		out_dir=config['output'],
 		sample=config['sample']
 	resources:
-		threads=1
+		threads=1,
+		mem_mb=100
 	shell:
 		#"mkdir {params.out_dir}/{params.sample}_gt_outputs; "
 		"mv *{params.sample}* {params.out_dir}; ls;"
