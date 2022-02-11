@@ -39,8 +39,8 @@ rule parse_GBs:
 		protGB="GENOME_PROTEIN_DB_{sample}.pkl"
 	conda:
 		"env/core_g_env.yml"
+	threads: 1
 	resources:
-		threads=1,
 		mem_mb=1000
 	notebook:
 		"scripts/gb2pkl.ipynb"
@@ -94,8 +94,8 @@ rule OGs_to_MSA:
 		path2OF="/Users/devseeva/Desktop/work/rso/OrthoFinder/"
 	conda:
 		"env/core_g_env.yml"
+	threads: 1
 	resources:
-		threads=1,
 		mem_mb=1000
 	notebook:
 		"scripts/ogs2msa.ipynb"
@@ -139,8 +139,8 @@ rule RAxML:
 		"{sample}_ML_tree_with_RR.nwk"
 	conda:
 		"env/core_g_env.yml"
+	threads: 8
 	resources:
-		threads=8,
 		mem_mb=3000
 	shell:
 		"raxml-ng --msa {input.msa} --model GTR+I+G4 --threads {threads}; "
@@ -168,8 +168,8 @@ rule clonalFrameML:
 		dir=directory("{sample}_cfml")
 	conda:
 		"env/core_g_env.yml"
+	threads: 1
 	resources:
-		threads=1,
 		mem_mb=9000
 	shell:
 		"mkdir {output};"
@@ -190,8 +190,8 @@ rule cfmlResultR_plot:
 		caption="report/cfml.rst", category="CFML: recombination prediction")
 	conda:
 		"env/r_env.yml"
+	threads: 1
 	resources:
-		threads=1,
 		mem_mb=1000
 	script:
 		"scripts/cfml_results.R"
@@ -218,8 +218,8 @@ rule remove_recombinations_from_MSA:
 		top_recombis="{sample}_recombis_top_genes.txt",
 	conda:
 		"env/core_g_env.yml"
+	threads: 1
 	resources:
-		threads=1,
 		mem_mb=1000
 	notebook:
 		"scripts/remove_recombinations_from_MSA.ipynb"
@@ -232,8 +232,8 @@ rule Modeltest_NG_II:
 		log="{sample}_modeltest_2/{sample}_concat_no_RR.fasta.out"
 	conda:
 		"env/core_g_env.yml"
+	threads: 8
 	resources:
-		threads=8,
 		mem_mb=4000
 	shell:
 		"rmdir {output.dir};"
@@ -269,8 +269,8 @@ rule RAxML_II:
 		"{sample}_ML_tree.nwk"
 	conda:
 		"env/core_g_env.yml"
+	threads: 8
 	resources:
-		threads=8,
 		mem_mb=1000
 	notebook:
 		"scripts/parse_ML_model.ipynb"
@@ -292,8 +292,8 @@ rule treeTime:
 		caption="report/treeTime.rst", category="Population structure")
 	conda:
 		"env/core_g_env.yml"
+	threads: 1
 	resources:
-		threads=1,
 		mem_mb=1000
 	shell:
 		#"mkdir {output.dir}; touch {output.plot}"
@@ -310,8 +310,8 @@ rule treeWAS:
 		meta="../inputs/{sample}_metadata/{sample}_cleaned_data_TW.csv"
 	params:
 		prefix="{sample}_cfml/{sample}_cfml"
+	threads: 1
 	resources:
-		threads=1,
 		mem_mb=1000
 	output:
 		report("{sample}_treeWAS_plots.pdf",caption="report/treeWAS.rst",category="CFML: recombination prediction")
@@ -335,8 +335,8 @@ rule final:
 	params:
 		out_dir=config['output'],
 		sample=config['sample']
+	threads: 1
 	resources:
-		threads=1,
 		mem_mb=100
 	shell:
 		#"mkdir {params.out_dir}/{params.sample}_gt_outputs; "
