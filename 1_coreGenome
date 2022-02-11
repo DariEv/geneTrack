@@ -138,9 +138,9 @@ rule RAxML:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=1
+		threads=8
 	shell:
-		"raxml-ng --msa {input.msa} --model GTR+I+G4; "
+		"raxml-ng --msa {input.msa} --model GTR+I+G4 --threads {threads}; "
 		"cp {input.msa}.raxml.bestTree {output}"
 
 # TODO: tree from OF is different for MSA and not MSA methods!
@@ -166,7 +166,8 @@ rule clonalFrameML:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=1
+		threads=1,
+		mem_mb=9000
 	shell:
 		"mkdir {output};"
 		#"cp DEBUG/rso_test_cfml/* {output}"
@@ -227,11 +228,12 @@ rule Modeltest_NG_II:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=1
+		threads=8,
+		mem_mb=1000
 	shell:
 		"rmdir {output.dir};"
 		"mkdir {output.dir};"
-		"modeltest-ng  -i {input.msa} -t ml --template raxml;"
+		"modeltest-ng  -i {input.msa} -t ml --template raxml -p {threads};"
 		"mv {input.msa}.* {output.dir}"
 
 # TODO modeltest results as an input
@@ -263,7 +265,7 @@ rule RAxML_II:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=1
+		threads=8
 	notebook:
 		"scripts/parse_ML_model.ipynb"
 
@@ -285,7 +287,8 @@ rule treeTime:
 	conda:
 		"env/core_g_env.yml"
 	resources:
-		threads=1
+		threads=1,
+		mem_mb=1000
 	shell:
 		#"mkdir {output.dir}; touch {output.plot}"
 		"treetime --aln {input.msa} --tree {input.tree} --dates {input.dates} --date-column collection_date --name-column strain --plot-tree {params.plot_name} --outdir {output.dir}"

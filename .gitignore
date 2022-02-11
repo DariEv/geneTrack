@@ -21,3 +21,6 @@ inputs/*
 # pyCharm #
 ###########
 .idea*
+
+######
+config.yaml
