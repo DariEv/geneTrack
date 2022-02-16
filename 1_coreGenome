@@ -12,6 +12,9 @@ rule all:
 # assembliyes quality
 # visualisation of OF, PanX
 
+def function mem_calc():
+	return int(config["mem"]/config["threads"])
+
 # todo
 # 0. add R to PATH
 # 1. replace ../inputs directory with a config file
@@ -146,7 +149,7 @@ rule RAxML:
 		"env/core_g_env.yml"
 	threads: config["threads"]
 	resources:
-		mem_mb=expand("int({mem}/{t})", mem=config["mem"], t=config["threads"])
+		mem_mb=mem_calc()
 	shell:
 		"raxml-ng --msa {input.msa} --model GTR+I+G4 --threads {threads}; "
 		"cp {input.msa}.raxml.bestTree {output}"
