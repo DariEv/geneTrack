@@ -1,4 +1,6 @@
 working_dir: '/Users/devseeva/Desktop/work/sm_workflow/geneTrack/WORKING/'
+mem: 8000
+threads: 8
 
 sample: 'rso_test'
 input_gbs: '/Users/devseeva/Desktop/work/sm_workflow/geneTrack/inputs/panX/rso_test'

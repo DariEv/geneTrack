@@ -46,7 +46,7 @@ rule parse_GBs:
 		"env/core_g_env.yml"
 	threads: 1
 	resources:
-		mem_mb=1000
+		mem_mb=config['mem']
 	notebook:
 		"scripts/gb2pkl.ipynb"
 
@@ -101,7 +101,7 @@ rule OGs_to_MSA:
 		"env/core_g_env.yml"
 	threads: 1
 	resources:
-		mem_mb=1000
+		mem_mb=config['mem']
 	notebook:
 		"scripts/ogs2msa.ipynb"
 
@@ -144,9 +144,9 @@ rule RAxML:
 		"{sample}_ML_tree_with_RR.nwk"
 	conda:
 		"env/core_g_env.yml"
-	threads: 8
+	threads: config["threads"]
 	resources:
-		mem_mb=3000
+		mem_mb=expand("int({mem}/{t})", mem=config["mem"], t=config["threads"])
 	shell:
 		"raxml-ng --msa {input.msa} --model GTR+I+G4 --threads {threads}; "
 		"cp {input.msa}.raxml.bestTree {output}"
@@ -175,7 +175,7 @@ rule clonalFrameML:
 		"env/core_g_env.yml"
 	threads: 1
 	resources:
-		mem_mb=9000
+		mem_mb=config['mem']
 	shell:
 		"mkdir {output};"
 		#"cp DEBUG/rso_test_cfml/* {output}"
@@ -197,7 +197,7 @@ rule cfmlResultR_plot:
 		"env/r_env.yml"
 	threads: 1
 	resources:
-		mem_mb=1000
+		mem_mb=config['mem']
 	script:
 		"scripts/cfml_results.R"
 	#shell:
@@ -225,7 +225,7 @@ rule remove_recombinations_from_MSA:
 		"env/core_g_env.yml"
 	threads: 1
 	resources:
-		mem_mb=1000
+		mem_mb=config['mem']
 	notebook:
 		"scripts/remove_recombinations_from_MSA.ipynb"
 
@@ -237,9 +237,9 @@ rule Modeltest_NG_II:
 		log="{sample}_modeltest_2/{sample}_concat_no_RR.fasta.out"
 	conda:
 		"env/core_g_env.yml"
-	threads: 8
+	threads: config["threads"]
 	resources:
-		mem_mb=4000
+		mem_mb=expand("int({mem}/{t})", mem=config["mem"], t=config["threads"])
 	shell:
 		"rmdir {output.dir};"
 		"mkdir {output.dir};"
@@ -274,9 +274,9 @@ rule RAxML_II:
 		"{sample}_ML_tree.nwk"
 	conda:
 		"env/core_g_env.yml"
-	threads: 8
+	threads: config["threads"]
 	resources:
-		mem_mb=1000
+		mem_mb=expand("int({mem}/{t})", mem=config["mem"], t=config["threads"])
 	notebook:
 		"scripts/parse_ML_model.ipynb"
 
@@ -299,7 +299,7 @@ rule treeTime:
 		"env/core_g_env.yml"
 	threads: 1
 	resources:
-		mem_mb=1000
+		mem_mb=config['mem']
 	shell:
 		#"mkdir {output.dir}; touch {output.plot}"
 		"treetime --aln {input.msa} --tree {input.tree} --dates {input.dates} --date-column collection_date --name-column strain --plot-tree {params.plot_name} --outdir {output.dir}"
@@ -317,7 +317,7 @@ rule treeWAS:
 		prefix="{sample}_cfml/{sample}_cfml"
 	threads: 1
 	resources:
-		mem_mb=1000
+		mem_mb=config['mem']
 	output:
 		report("{sample}_treeWAS_plots.pdf",caption="report/treeWAS.rst",category="CFML: recombination prediction")
 	script:
@@ -342,7 +342,7 @@ rule final:
 		sample=config['sample']
 	threads: 1
 	resources:
-		mem_mb=100
+		mem_mb=1000
 	shell:
 		#"mkdir {params.out_dir}/{params.sample}_gt_outputs; "
 		"mv *{params.sample}* {params.out_dir}; ls;"
