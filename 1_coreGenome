@@ -12,7 +12,7 @@ rule all:
 # assembliyes quality
 # visualisation of OF, PanX
 
-def function mem_calc():
+def mem_calc():
 	return int(config["mem"]/config["threads"])
 
 # todo
