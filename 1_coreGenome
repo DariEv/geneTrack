@@ -242,7 +242,7 @@ rule Modeltest_NG_II:
 		"env/core_g_env.yml"
 	threads: config["threads"]
 	resources:
-		mem_mb=expand("int({mem}/{t})", mem=config["mem"], t=config["threads"])
+		mem_mb=mem_calc()
 	shell:
 		"rmdir {output.dir};"
 		"mkdir {output.dir};"
@@ -279,7 +279,7 @@ rule RAxML_II:
 		"env/core_g_env.yml"
 	threads: config["threads"]
 	resources:
-		mem_mb=expand("int({mem}/{t})", mem=config["mem"], t=config["threads"])
+		mem_mb=mem_calc()
 	notebook:
 		"scripts/parse_ML_model.ipynb"
 
