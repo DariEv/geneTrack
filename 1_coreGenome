@@ -42,7 +42,9 @@ def mem_calc():
 # Part 1: load the genome data from genBank files into a database
 rule parse_GBs:
 	input:
-		config["input_gbs"]
+		core_ogs=config["orthoFinder"]+"/Species_Tree/Orthogroups_for_concatenated_alignment.txt",
+		ogs2prot=config["orthoFinder"]+"/Orthogroups/Orthogroups.tsv",
+		gbs=config["input_gbs"]
 	output:
 		protGB="GENOME_PROTEIN_DB_{sample}.pkl"
 	conda:
