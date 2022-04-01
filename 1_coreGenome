@@ -97,7 +97,6 @@ rule OGs_to_MSA:
 		prot_db="GENOME_PROTEIN_DB_{sample}.pkl"
 	output:
 		msa_fasta="{sample}_concat.fasta",
-		msa_phylip="{sample}_concat.nexus",
 		msa_xmfa="{sample}_concat.xmfa",
 		aln2acc="MSA_ACC_DB_{sample}.pkl"
 	params:
