@@ -15,6 +15,9 @@ rule all:
 def mem_calc():
 	return int(config["mem"]/config["threads"])
 
+def t_calc():
+	return int(config["threads"]/2)
+
 # todo
 # 0. add R to PATH
 # 1. replace ../inputs directory with a config file
@@ -148,7 +151,7 @@ rule RAxML:
 		"{sample}_ML_tree_with_RR.nwk"
 	conda:
 		"env/core_g_env.yml"
-	threads: config["threads"]
+	threads: t_calc()
 	resources:
 		mem_mb=mem_calc()
 	shell:
