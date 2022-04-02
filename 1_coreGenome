@@ -352,7 +352,7 @@ rule final:
 		#cfml="{sample}.cfml.pdf",
 		#tWas="{sample}_treeWAS_plots.pdf",
 		recombination=rules.clonalFrameML.output.dir,
-		recombination=rules.clonalFrameML2.output.dir
+		recombination2=rules.clonalFrameML2.output.dir
 	output:
 		#dir=directory('{sample}_gt_outputs')
 		report("{sample}_HGT_candidates_summary.pdf",
