@@ -170,11 +170,7 @@ rule RAxML:
 # 6Mb for CFML, 2,7 Mb for original MSA from OF (phy2)
 rule clonalFrameML:
 	input:
-		#tree_old="../inputs/mafft/{sample}/mafft_nucl_test_UPGMA_st5.nwk",
-		#msa_old="../inputs/mafft/{sample}/mafft_nucl_test.fasta",
-		msa="{sample}_concat.xmfa",
-		#"/Users/devseeva/Desktop/work/sm_workflow/snakefiles/../inputs/panX/phy2_test/mauve/phy2_aln.xmfa",
-		#"{sample}_concat.fasta",
+		msa="{sample}_concat_s1.xmfa",
 		tree="{sample}_ML_tree_with_RR.nwk"
 	output:
 		dir=directory("{sample}_cfml")
@@ -186,6 +182,22 @@ rule clonalFrameML:
 	shell:
 		"mkdir {output};"
 		#"cp DEBUG/rso_test_cfml/* {output}"
+		"ClonalFrameML {input.tree} {input.msa} {output} -xmfa_file true ; "
+		"mv {output}.* {output}/"
+
+rule clonalFrameML2:
+	input:
+		msa="{sample}_concat_s2.xmfa",
+		tree="{sample}_ML_tree_with_RR.nwk"
+	output:
+		dir=directory("{sample}_cfml2")
+	conda:
+		"env/core_g_env.yml"
+	threads: 1
+	resources:
+		mem_mb=config['mem']
+	shell:
+		"mkdir {output};"
 		"ClonalFrameML {input.tree} {input.msa} {output} -xmfa_file true ; "
 		"mv {output}.* {output}/"
 
@@ -336,10 +348,11 @@ rule treeWAS:
 # Summary
 rule final:
 	input:
-		time=directory("{sample}_treetime"),
+		### not for mart! --- time=directory("{sample}_treetime"),
 		#cfml="{sample}.cfml.pdf",
 		#tWas="{sample}_treeWAS_plots.pdf",
-		recombination=rules.clonalFrameML.output.dir
+		recombination=rules.clonalFrameML.output.dir,
+		recombination=rules.clonalFrameML2.output.dir
 	output:
 		#dir=directory('{sample}_gt_outputs')
 		report("{sample}_HGT_candidates_summary.pdf",
