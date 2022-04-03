@@ -236,7 +236,6 @@ rule remove_recombinations_from_MSA:
 		tree="{sample}_cfml/{sample}_cfml.labelled_tree.newick"
 	output:
 		fa_msa_out="{sample}_concat_no_RR.fasta",
-		ph_msa_out="{sample}_concat_no_RR.nexus",
 		updated_recombis="{sample}_recombis2prot.csv",
 		mult_recombis="{sample}_recombis_mult_genes.txt",
 		top_recombis="{sample}_recombis_top_genes.txt",
@@ -352,7 +351,8 @@ rule final:
 		#cfml="{sample}.cfml.pdf",
 		#tWas="{sample}_treeWAS_plots.pdf",
 		recombination=rules.clonalFrameML.output.dir,
-		recombination2=rules.clonalFrameML2.output.dir
+		##recombination2=rules.clonalFrameML2.output.dir
+		tree="{sample}_ML_tree.nwk"
 	output:
 		#dir=directory('{sample}_gt_outputs')
 		report("{sample}_HGT_candidates_summary.pdf",
